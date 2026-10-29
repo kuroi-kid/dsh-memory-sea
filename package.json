@@ -1,0 +1,76 @@
+{
+  "name": "@dsh-external/dsh-memory-sea",
+  "version": "0.1.0",
+  "description": "记忆海 · 大肥鱼中枢：把一份本地长期记忆库（JSONL）接成 DeepSeek Harness 的侧边栏面板——看状态、语义检索、调半衰期、跑夜间体检、开星图",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "memory",
+    "long-term-memory",
+    "sidebar",
+    "semantic-search"
+  ],
+  "private": true,
+  "type": "module",
+  "main": "./lib/index.js",
+  "license": "BSD-3-Clause",
+  "author": "kuroi-kid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuroi-kid/dsh-memory-sea.git"
+  },
+  "homepage": "https://github.com/kuroi-kid/dsh-memory-sea#readme",
+  "bugs": {
+    "url": "https://github.com/kuroi-kid/dsh-memory-sea/issues"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm": ">=0.0.1-rc <2",
+    "@deepseek-ai/dsh-tools": ">=0.0.1-rc <2",
+    "cordis": ">=4.0.0-rc <5",
+    "@deepseek-ai/schemastery": "^3.18.2",
+    "@deepseek-ai/dsh-client-ui-slots": ">=0.0.1-rc <2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-llm": { "optional": true },
+    "@deepseek-ai/dsh-client-ui-slots": { "optional": true },
+    "@deepseek-ai/schemastery": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "typescript": "^5.9.0",
+    "tsdown": "^0.22.14"
+  },
+  "scripts": {
+    "build": "bash scripts/build.sh",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build:client": "tsdown",
+    "pack": "npm pack --pack-destination ./dist"
+  },
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./icon": "./assets/logo.svg",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}
